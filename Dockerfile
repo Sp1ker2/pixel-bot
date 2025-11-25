@@ -20,5 +20,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копируем код бота
 COPY pixel_bot.py .
 
-# Запускаем бота
-CMD ["python", "pixel_bot.py"]
+# Устанавливаем переменную окружения для Python
+ENV PYTHONUNBUFFERED=1
+
+# Запускаем бота (используем exec form для правильной обработки сигналов)
+ENTRYPOINT ["python", "-u", "pixel_bot.py"]
